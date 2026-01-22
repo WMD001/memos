@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/handler.go",
+      "use": "@vercel/go"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/v1/(.*)",
+      "dest": "/api/handler.go"
+    },
+    {
+      "src": "/memos.api.v1.(.*)",
+      "dest": "/api/handler.go"
+    },
+    {
+      "src": "/healthz",
+      "dest": "/api/handler.go"
+    },
+    {
+      "src": "/file/(.*)",
+      "dest": "/api/handler.go"
+    },
+    {
+      "src": "/rss/(.*)",
+      "dest": "/api/handler.go"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/web/$1"
+    }
+  ],
+  "env": {
+    "MEMOS_MODE": "prod",
+    "MEMOS_DRIVER": "sqlite"
+  }
+}
